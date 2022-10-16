@@ -1,0 +1,43 @@
+# SPDX-License-Identifier: MIT
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/i2c/i2c-sh110x.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: I2C SH110x Display Driver
+
+maintainers:
+  - Spencer Chang <spencer@sycee.xyz>
+
+properties:
+  compatible:
+    enum:
+      - sinowealth,sh110x
+
+  reg:
+    maxItems: 1
+
+  brightness:
+    description: the contrast to set on the screen
+    minimum: 0
+    maximum: 255
+
+  inverted:
+    description: specifying this will invert the colors
+
+required:
+  - compatible
+  - reg
+
+unevaluatedProperties: false
+
+examples:
+  - |
+    i2c0: i2c@41e00000 {
+      oled_screen: oled@3c {
+        compatible = "sinowealth,sh110x";
+        reg = <0x3c>;
+        brightness = 200;
+      };
+    };
+...
